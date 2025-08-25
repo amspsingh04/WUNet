@@ -1,0 +1,56 @@
+{
+  "exp_name": "waveunet_dereverb",
+  "root_dir": "experiments",
+
+  "train_data": {
+    "clean_dir": "data/clean/train",
+    "reverb_dir": "data/reverb/train",
+    "sample_rate": 16000,
+    "segment_length": 4
+  },
+
+  "valid_data": {
+    "clean_dir": "data/clean/valid",
+    "reverb_dir": "data/reverb/valid",
+    "sample_rate": 16000,
+    "segment_length": 4
+  },
+
+  "dataloader": {
+    "batch_size": 8,
+    "num_workers": 4,
+    "shuffle": true
+  },
+
+  "model": {
+    "name": "WaveUNet",
+    "num_layers": 12,
+    "features": 24,
+    "kernel_size": 15,
+    "stride": 2
+  },
+
+  "loss": {
+    "type": "si_sdr", 
+    "weight": 1.0
+  },
+
+  "optimizer": {
+    "type": "adam",
+    "lr": 0.0001,
+    "weight_decay": 0.0
+  },
+
+  "scheduler": {
+    "type": "step",
+    "step_size": 10,
+    "gamma": 0.5
+  },
+
+  "trainer": {
+    "epochs": 100,
+    "save_interval": 5,
+    "log_interval": 100,
+    "resume": false
+  }
+}
